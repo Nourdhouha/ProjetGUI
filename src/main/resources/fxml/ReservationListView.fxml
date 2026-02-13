@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.voyageaffaires.controllers.ReservationListController"
+            prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #f8fafc;">
+    
+    <stylesheets>
+        <java.lang.String fx:value="/css/style.css"/>
+    </stylesheets>
+    
+    <top>
+        <VBox>
+            <!-- Header -->
+            <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20.0">
+                <padding>
+                    <Insets top="15.0" right="30.0" bottom="15.0" left="30.0"/>
+                </padding>
+                
+                <Button text="← Retour" onAction="#goBack" styleClass="secondary-button">
+                    <padding>
+                        <Insets top="8.0" right="15.0" bottom="8.0" left="15.0"/>
+                    </padding>
+                </Button>
+                
+                <Label text="Mes Réservations" styleClass="header-title"/>
+                
+                <Region HBox.hgrow="ALWAYS"/>
+                
+                <Button fx:id="btnNewReservation" text="+ Nouvelle Réservation" onAction="#handleNewReservation" 
+                        style="-fx-background-color: #4F8FF0; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-cursor: hand;">
+                    <padding>
+                        <Insets top="10.0" right="20.0" bottom="10.0" left="20.0"/>
+                    </padding>
+                </Button>
+            </HBox>
+            
+            <!-- Stats Summary -->
+            <HBox spacing="20.0" style="-fx-background-color: #f8fafc; -fx-padding: 20 30;">
+                <VBox styleClass="stats-card-modern" alignment="CENTER" spacing="8.0" prefWidth="180.0" prefHeight="100.0">
+                    <padding>
+                        <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                    </padding>
+                    <Label fx:id="statsTotal" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                    <Label text="Total" style="-fx-text-fill: #64748b; -fx-font-size: 13px;"/>
+                </VBox>
+                
+                <VBox styleClass="stats-card-modern" alignment="CENTER" spacing="8.0" prefWidth="180.0" prefHeight="100.0">
+                    <padding>
+                        <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                    </padding>
+                    <Label fx:id="statsEnAttente" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #f59e0b;"/>
+                    <Label text="En Attente" style="-fx-text-fill: #64748b; -fx-font-size: 13px;"/>
+                </VBox>
+                
+                <VBox styleClass="stats-card-modern" alignment="CENTER" spacing="8.0" prefWidth="180.0" prefHeight="100.0">
+                    <padding>
+                        <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                    </padding>
+                    <Label fx:id="statsConfirmee" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #10b981;"/>
+                    <Label text="Confirmée" style="-fx-text-fill: #64748b; -fx-font-size: 13px;"/>
+                </VBox>
+                
+                <VBox styleClass="stats-card-modern" alignment="CENTER" spacing="8.0" prefWidth="180.0" prefHeight="100.0">
+                    <padding>
+                        <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                    </padding>
+                    <Label fx:id="statsMontantTotal" text="0 €" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                    <Label text="Montant Total" style="-fx-text-fill: #64748b; -fx-font-size: 13px;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <VBox spacing="20.0" style="-fx-background-color: #f8fafc;">
+            <padding>
+                <Insets top="20.0" right="30.0" bottom="30.0" left="30.0"/>
+            </padding>
+            
+            <!-- Filters and Search -->
+            <HBox spacing="15.0" alignment="CENTER_LEFT">
+                <Label text="Filtrer par statut:" style="-fx-text-fill: #475569; -fx-font-weight: bold;"/>
+                
+                <Button fx:id="btnFilterAll" text="Tous" onAction="#filterAll" 
+                        styleClass="filter-button-active">
+                    <padding>
+                        <Insets top="8.0" right="16.0" bottom="8.0" left="16.0"/>
+                    </padding>
+                </Button>
+                
+                <Button fx:id="btnFilterEnAttente" text="En Attente" onAction="#filterEnAttente" 
+                        styleClass="filter-button">
+                    <padding>
+                        <Insets top="8.0" right="16.0" bottom="8.0" left="16.0"/>
+                    </padding>
+                </Button>
+                
+                <Button fx:id="btnFilterConfirmee" text="Confirmée" onAction="#filterConfirmee" 
+                        styleClass="filter-button">
+                    <padding>
+                        <Insets top="8.0" right="16.0" bottom="8.0" left="16.0"/>
+                    </padding>
+                </Button>
+                
+                <Button fx:id="btnFilterAnnulee" text="Annulée" onAction="#filterAnnulee" 
+                        styleClass="filter-button">
+                    <padding>
+                        <Insets top="8.0" right="16.0" bottom="8.0" left="16.0"/>
+                    </padding>
+                </Button>
+                
+                <Region HBox.hgrow="ALWAYS"/>
+                
+                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="250.0"/>
+                <Button text="Rechercher" onAction="#handleSearch" styleClass="primary-button"/>
+                <Button text="Réinitialiser" onAction="#handleReset" styleClass="secondary-button"/>
+            </HBox>
+            
+            <!-- Table -->
+            <VBox styleClass="chart-card" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                </padding>
+                
+                <Label text="Liste des Réservations" 
+                       style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;">
+                    <padding>
+                        <Insets bottom="15.0"/>
+                    </padding>
+                </Label>
+                
+                <TableView fx:id="reservationsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" text="Numéro" prefWidth="150.0"/>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="100.0"/>
+                        <TableColumn fx:id="colUtilisateur" text="Utilisateur" prefWidth="150.0"/>
+                        <TableColumn fx:id="colStatut" text="Statut" prefWidth="110.0"/>
+                        <TableColumn fx:id="colMontant" text="Montant" prefWidth="90.0"/>
+                        <TableColumn fx:id="colVol" text="Vol" prefWidth="220.0"/>
+                        <TableColumn fx:id="colHotel" text="Hôtel" prefWidth="180.0"/>
+                        <TableColumn fx:id="colActions" text="Actions" prefWidth="230.0"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

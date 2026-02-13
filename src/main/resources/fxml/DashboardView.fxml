@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.voyageaffaires.controllers.DashboardController"
+            prefHeight="800.0" prefWidth="1280.0">
+    
+    <!-- Stylesheet -->
+    <stylesheets>
+        <java.lang.String fx:value="/css/style.css"/>
+    </stylesheets>
+    
+    <!-- Top Header -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20.0">
+            <padding>
+                <Insets top="15.0" right="30.0" bottom="15.0" left="30.0"/>
+            </padding>
+            
+            <Label text="Voyage &amp; Affaires" styleClass="header-title"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <Label fx:id="welcomeLabel" text="Bienvenue" styleClass="subtitle">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Label>
+            
+            <Button fx:id="logoutButton" text="Déconnexion" onAction="#handleLogout" 
+                    styleClass="secondary-button">
+                <padding>
+                    <Insets top="8.0" right="15.0" bottom="8.0" left="15.0"/>
+                </padding>
+            </Button>
+        </HBox>
+    </top>
+    
+    <!-- Sidebar Navigation -->
+    <left>
+        <VBox styleClass="sidebar" spacing="10.0" prefWidth="250.0">
+            <padding>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+            </padding>
+            
+            <Label text="NAVIGATION" style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold; -fx-letter-spacing: 0.5px;">
+                <padding>
+                    <Insets bottom="10.0"/>
+                </padding>
+            </Label>
+            
+            <Button fx:id="btnDashboard" text="  Accueil" onAction="#showDashboard" 
+                    styleClass="sidebar-button" maxWidth="Infinity">
+                <graphic>
+                    <FontIcon iconLiteral="fas-home" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="btnUsers" text="  Gestion des Utilisateurs" onAction="#showUserManagement" 
+                    styleClass="sidebar-button" maxWidth="Infinity">
+                <graphic>
+                    <FontIcon iconLiteral="fas-users" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="btnProfile" text="  Mon Profil" onAction="#showProfile" 
+                    styleClass="sidebar-button" maxWidth="Infinity">
+                <graphic>
+                    <FontIcon iconLiteral="fas-user-circle" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="btnReservations" text="  Mes Réservations" onAction="#showReservations" 
+                    styleClass="sidebar-button" maxWidth="Infinity">
+                <graphic>
+                    <FontIcon iconLiteral="fas-plane" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="btnSearchFlights" text="  Rechercher un Vol" onAction="#showSearchFlights" 
+                    styleClass="sidebar-button" maxWidth="Infinity">
+                <graphic>
+                    <FontIcon iconLiteral="fas-search" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="btnSearchHotels" text="  Rechercher un Hôtel" onAction="#showSearchHotels" 
+                    styleClass="sidebar-button" maxWidth="Infinity">
+                <graphic>
+                    <FontIcon iconLiteral="fas-hotel" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Separator>
+                <VBox.margin>
+                    <Insets top="10.0" bottom="10.0"/>
+                </VBox.margin>
+            </Separator>
+            
+            <Button fx:id="btnReports" text="  Rapports" onAction="#showReports" 
+                    styleClass="sidebar-button" maxWidth="Infinity">
+                <graphic>
+                    <FontIcon iconLiteral="fas-chart-bar" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="btnHistory" text="  Historique" onAction="#showHistory" 
+                    styleClass="sidebar-button" maxWidth="Infinity">
+                <graphic>
+                    <FontIcon iconLiteral="fas-history" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Separator>
+                <VBox.margin>
+                    <Insets top="10.0" bottom="10.0"/>
+                </VBox.margin>
+            </Separator>
+            
+            <Button text="  Approbations (Bientôt)" styleClass="sidebar-button" 
+                    maxWidth="Infinity" disable="true">
+                <graphic>
+                    <FontIcon iconLiteral="fas-check-circle" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Button text="  Gestion des Dépenses (Bientôt)" styleClass="sidebar-button" 
+                    maxWidth="Infinity" disable="true">
+                <graphic>
+                    <FontIcon iconLiteral="fas-dollar-sign" iconSize="16" iconColor="#475569"/>
+                </graphic>
+            </Button>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            
+            <Label fx:id="roleLabel" text="Rôle: Utilisateur" 
+                   style="-fx-text-fill: #64748b; -fx-font-size: 11px;"/>
+        </VBox>
+    </left>
+    
+    <!-- Main Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <!-- Default Dashboard View -->
+            <ScrollPane fitToWidth="true" style="-fx-background: #f8fafc; -fx-background-color: #f8fafc;">
+                <VBox spacing="25.0" style="-fx-background-color: #f8fafc;">
+                    <padding>
+                        <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+                    </padding>
+                    
+                    <!-- Welcome Section -->
+                    <Label text="Bienvenue sur Voyage &amp; Affaires" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1e293b;">
+                        <padding>
+                            <Insets bottom="10.0"/>
+                        </padding>
+                    </Label>
+                    
+                    <!-- Stats Cards -->
+                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                        <VBox styleClass="stats-card-modern" alignment="CENTER" spacing="10.0" prefWidth="220.0" prefHeight="130.0">
+                            <padding>
+                                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                            </padding>
+                            <Label fx:id="statsReservations" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                            <Label text="Réservations" style="-fx-text-fill: #64748b; -fx-font-size: 14px;"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stats-card-modern" alignment="CENTER" spacing="10.0" prefWidth="220.0" prefHeight="130.0">
+                            <padding>
+                                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                            </padding>
+                            <Label fx:id="statsUsers" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                            <Label text="Utilisateurs" style="-fx-text-fill: #64748b; -fx-font-size: 14px;"/>
+                        </VBox>
+                        
+                        <VBox styleClass="stats-card-modern" alignment="CENTER" spacing="10.0" prefWidth="220.0" prefHeight="130.0">
+                            <padding>
+                                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                            </padding>
+                            <Label fx:id="statsPending" text="0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                            <Label text="En Attente" style="-fx-text-fill: #64748b; -fx-font-size: 14px;"/>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Charts Section -->
+                    <HBox spacing="20.0" alignment="TOP_LEFT">
+                        <!-- Line Chart: Réservations par jour -->
+                        <VBox styleClass="chart-card" spacing="15.0" prefWidth="480.0" HBox.hgrow="ALWAYS">
+                            <padding>
+                                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                            </padding>
+                            <Label text="Réservations par jour" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                            <LineChart fx:id="reservationsChart" prefHeight="280.0" legendVisible="false" animated="false">
+                                <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                </yAxis>
+                            </LineChart>
+                        </VBox>
+                        
+                        <!-- Bar Chart: Destinations populaires -->
+                        <VBox styleClass="chart-card" spacing="15.0" prefWidth="480.0" HBox.hgrow="ALWAYS">
+                            <padding>
+                                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                            </padding>
+                            <Label text="Destinations populaires" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                            <BarChart fx:id="destinationsChart" prefHeight="280.0" legendVisible="false" animated="false">
+                                <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                </yAxis>
+                            </BarChart>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Action Buttons -->
+                    <VBox alignment="CENTER" spacing="15.0">
+                        <padding>
+                            <Insets top="10.0"/>
+                        </padding>
+                        <Label text="Actions rapides" style="-fx-text-fill: #64748b; -fx-font-size: 14px;"/>
+                        
+                        <HBox spacing="15.0" alignment="CENTER">
+                            <Button fx:id="btnCreateReservation" text="Nouvelle Réservation" onAction="#handleCreateReservation" 
+                                    style="-fx-background-color: #4F8FF0; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-cursor: hand;">
+                                <padding>
+                                    <Insets top="12.0" right="24.0" bottom="12.0" left="24.0"/>
+                                </padding>
+                            </Button>
+                            
+                            <Button text="Voir mes Réservations" onAction="#showReservations" 
+                                    style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-cursor: hand;">
+                                <padding>
+                                    <Insets top="12.0" right="24.0" bottom="12.0" left="24.0"/>
+                                </padding>
+                            </Button>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+        </StackPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.voyageaffaires.controllers.ProfileController"
+            prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #f8fafc;">
+    
+    <stylesheets>
+        <java.lang.String fx:value="/css/style.css"/>
+    </stylesheets>
+    
+    <top>
+        <!-- Header -->
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20.0">
+            <padding>
+                <Insets top="15.0" right="30.0" bottom="15.0" left="30.0"/>
+            </padding>
+            
+            <Button text="← Retour" onAction="#goBack" styleClass="secondary-button">
+                <padding>
+                    <Insets top="8.0" right="15.0" bottom="8.0" left="15.0"/>
+                </padding>
+            </Button>
+            
+            <Label text="Mon Profil" styleClass="header-title"/>
+        </HBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: #f8fafc; -fx-background-color: #f8fafc;">
+            <VBox spacing="25.0" style="-fx-background-color: #f8fafc; -fx-max-width: 800px;">
+                <padding>
+                    <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+                </padding>
+                
+                <!-- Profile Header -->
+                <VBox styleClass="card" spacing="15.0">
+                    <padding>
+                        <Insets top="25.0" right="25.0" bottom="25.0" left="25.0"/>
+                    </padding>
+                    
+                    <Label text="Informations Personnelles" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                    <Label text="Gérez vos informations de profil" style="-fx-text-fill: #64748b; -fx-font-size: 14px;"/>
+                </VBox>
+                
+                <!-- Profile Form -->
+                <VBox styleClass="card" spacing="20.0">
+                    <padding>
+                        <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+                    </padding>
+                    
+                    <!-- Name Fields -->
+                    <HBox spacing="15.0">
+                        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                            <Label text="Nom *" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                            <TextField fx:id="txtNom" promptText="Nom" styleClass="modern-field"/>
+                        </VBox>
+                        
+                        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                            <Label text="Prénom *" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                            <TextField fx:id="txtPrenom" promptText="Prénom" styleClass="modern-field"/>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Email -->
+                    <VBox spacing="8.0">
+                        <Label text="Email *" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <TextField fx:id="txtEmail" promptText="email@exemple.com" styleClass="modern-field"/>
+                    </VBox>
+                    
+                    <!-- Phone -->
+                    <VBox spacing="8.0">
+                        <Label text="Téléphone *" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <TextField fx:id="txtTelephone" promptText="20123456 ou +21620123456" styleClass="modern-field"/>
+                        <Label text="Format: 8 chiffres ou +216 suivi de 8 chiffres" style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;"/>
+                    </VBox>
+                    
+                    <!-- Department -->
+                    <VBox spacing="8.0">
+                        <Label text="Département" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <TextField fx:id="txtDepartement" promptText="Département" styleClass="modern-field"/>
+                    </VBox>
+                    
+                    <Separator/>
+                    
+                    <!-- Password Change Section -->
+                    <Label text="Changer le mot de passe" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                    <Label text="Laissez vide si vous ne souhaitez pas changer votre mot de passe" style="-fx-text-fill: #64748b; -fx-font-size: 12px;"/>
+                    
+                    <!-- Current Password -->
+                    <VBox spacing="8.0">
+                        <Label text="Mot de passe actuel" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <PasswordField fx:id="txtCurrentPassword" promptText="Mot de passe actuel" styleClass="modern-field"/>
+                    </VBox>
+                    
+                    <!-- New Password Fields -->
+                    <HBox spacing="15.0">
+                        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                            <Label text="Nouveau mot de passe" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                            <PasswordField fx:id="txtNewPassword" promptText="Nouveau mot de passe" styleClass="modern-field"/>
+                        </VBox>
+                        
+                        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                            <Label text="Confirmer le nouveau mot de passe" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                            <PasswordField fx:id="txtConfirmPassword" promptText="Confirmer le mot de passe" styleClass="modern-field"/>
+                        </VBox>
+                    </HBox>
+                    
+                    <Separator/>
+                    
+                    <!-- Error/Success Messages -->
+                    <Label fx:id="lblMessage" managed="false" visible="false" wrapText="true" 
+                           style="-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-padding: 12; -fx-background-radius: 8;"/>
+                    
+                    <!-- Action Buttons -->
+                    <HBox spacing="15.0" alignment="CENTER_LEFT">
+                        <padding>
+                            <Insets top="10.0"/>
+                        </padding>
+                        
+                        <Button text="Enregistrer les modifications" onAction="#handleSave" 
+                                style="-fx-background-color: #4F8FF0; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-cursor: hand; -fx-font-size: 14px;">
+                            <padding>
+                                <Insets top="12.0" right="24.0" bottom="12.0" left="24.0"/>
+                            </padding>
+                        </Button>
+                        
+                        <Button text="Annuler" onAction="#handleCancel" 
+                                style="-fx-background-color: #e2e8f0; -fx-text-fill: #475569; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-cursor: hand; -fx-font-size: 14px;">
+                            <padding>
+                                <Insets top="12.0" right="24.0" bottom="12.0" left="24.0"/>
+                            </padding>
+                        </Button>
+                    </HBox>
+                </VBox>
+                
+                <!-- Account Info -->
+                <VBox styleClass="card" spacing="15.0">
+                    <padding>
+                        <Insets top="25.0" right="25.0" bottom="25.0" left="25.0"/>
+                    </padding>
+                    
+                    <Label text="Informations du Compte" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                    
+                    <HBox spacing="10.0">
+                        <Label text="Rôle:" style="-fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblRole" text="EMPLOYEE" style="-fx-text-fill: #475569;"/>
+                    </HBox>
+                    
+                    <HBox spacing="10.0">
+                        <Label text="Statut:" style="-fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblStatut" text="Actif" style="-fx-text-fill: #10b981; -fx-font-weight: bold;"/>
+                    </HBox>
+                    
+                    <HBox spacing="10.0">
+                        <Label text="ID Utilisateur:" style="-fx-text-fill: #64748b; -fx-font-weight: bold;"/>
+                        <Label fx:id="lblUserId" text="0" style="-fx-text-fill: #475569; -fx-font-family: monospace;"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

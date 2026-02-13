@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.voyageaffaires.controllers.LoginController"
+            prefHeight="600.0" prefWidth="900.0" styleClass="root">
+    
+    <!-- Stylesheet -->
+    <stylesheets>
+        <java.lang.String fx:value="/css/style.css"/>
+    </stylesheets>
+    
+    <center>
+        <VBox alignment="CENTER" spacing="20.0" maxWidth="400.0">
+            <padding>
+                <Insets top="40.0" right="40.0" bottom="40.0" left="40.0"/>
+            </padding>
+            
+            <!-- Logo/Title -->
+            <VBox alignment="CENTER" spacing="10.0">
+                <Label text="Voyage &amp; Affaires" styleClass="title">
+                    <font>
+                        <Font name="System Bold" size="32.0"/>
+                    </font>
+                </Label>
+                <Label text="Plateforme de Gestion de Voyages" styleClass="subtitle">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+            </VBox>
+            
+            <VBox spacing="5.0">
+                <VBox.margin>
+                    <Insets top="30.0"/>
+                </VBox.margin>
+            </VBox>
+            
+            <!-- Login Form -->
+            <VBox spacing="15.0" styleClass="login-form">
+                <padding>
+                    <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+                </padding>
+                
+                <!-- Email Field -->
+                <VBox spacing="5.0">
+                    <Label text="Email:" styleClass="field-label">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <TextField fx:id="emailField" promptText="votre.email@exemple.com" 
+                              styleClass="text-field" prefHeight="40.0"/>
+                </VBox>
+                
+                <!-- Password Field -->
+                <VBox spacing="5.0">
+                    <Label text="Mot de passe:" styleClass="field-label">
+                        <font>
+                            <Font name="System Bold" size="12.0"/>
+                        </font>
+                    </Label>
+                    <PasswordField fx:id="passwordField" promptText="Votre mot de passe" 
+                                  styleClass="text-field" prefHeight="40.0"
+                                  onAction="#handleLogin"/>
+                </VBox>
+                
+                <!-- Error Label -->
+                <Label fx:id="errorLabel" styleClass="error-label" visible="false" wrapText="true"/>
+                
+                <!-- Login Button -->
+                <Button fx:id="loginButton" text="Se connecter" onAction="#handleLogin" 
+                        styleClass="primary-button" prefHeight="45.0" maxWidth="Infinity">
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
+                </Button>
+                
+                <!-- Info Text -->
+                <Label text="Identifiants par défaut: admin@voyageaffaires.com / admin123" 
+                       styleClass="info-label" wrapText="true">
+                    <font>
+                        <Font size="10.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Label>
+            </VBox>
+            
+            <!-- Footer -->
+            <Label text="© 2024 Voyage &amp; Affaires - Tous droits réservés" 
+                   styleClass="footer-label">
+                <font>
+                    <Font size="10.0"/>
+                </font>
+                <VBox.margin>
+                    <Insets top="20.0"/>
+                </VBox.margin>
+            </Label>
+        </VBox>
+    </center>
+</BorderPane>
