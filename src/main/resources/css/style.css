@@ -1,0 +1,413 @@
+/* ========================================
+   Voyage & Affaires - Main Stylesheet
+   ======================================== */
+
+/* Root and General Styles */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #f0f4f8, #e2e8f0);
+    -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+}
+
+/* Title Styles */
+.title {
+    -fx-text-fill: #1e40af;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.subtitle {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 14px;
+}
+
+/* Login Form */
+.login-form {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+/* Text Fields */
+.text-field {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused {
+    -fx-border-color: #3b82f6;
+    -fx-background-color: white;
+}
+
+/* Field Labels */
+.field-label {
+    -fx-text-fill: #334155;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* Primary Button */
+.primary-button {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.primary-button:hover {
+    -fx-background-color: #2563eb;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #1d4ed8;
+}
+
+/* Secondary Button */
+.secondary-button {
+    -fx-background-color: #64748b;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #475569;
+}
+
+/* Success Button */
+.success-button {
+    -fx-background-color: #10b981;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.success-button:hover {
+    -fx-background-color: #059669;
+}
+
+/* Danger Button */
+.danger-button {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.danger-button:hover {
+    -fx-background-color: #dc2626;
+}
+
+/* Error Label */
+.error-label {
+    -fx-text-fill: #dc2626;
+    -fx-font-size: 12px;
+    -fx-padding: 5px;
+}
+
+/* Info Label */
+.info-label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 10px;
+}
+
+/* Footer Label */
+.footer-label {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 10px;
+}
+
+/* Sidebar - Light Modern Theme */
+.sidebar {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 20px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 1px 0 0;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #475569;
+    -fx-alignment: center-left;
+    -fx-padding: 12px 16px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #4F8FF0;
+}
+
+.sidebar-button-active {
+    -fx-background-color: #4F8FF0;
+    -fx-text-fill: white;
+}
+
+/* Disabled buttons */
+.sidebar-button:disabled {
+    -fx-opacity: 0.4;
+    -fx-cursor: default;
+}
+
+/* Content Area */
+.content-area {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 30px;
+}
+
+/* Card */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-padding: 20px;
+}
+
+/* Table View */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 5px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f1f5f9;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #1e293b;
+    -fx-padding: 10px;
+}
+
+.table-view .table-cell {
+    -fx-padding: 8px;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f8fafc;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1e40af;
+}
+
+/* Header */
+.header {
+    -fx-background-color: white;
+    -fx-padding: 15px 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+
+.header-title {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Stats Card */
+.stats-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.stats-value {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.stats-label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 14px;
+}
+
+/* Status Labels */
+.status-pending {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #92400e;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 3px;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.status-approved {
+    -fx-background-color: #d1fae5;
+    -fx-text-fill: #065f46;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 3px;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.status-rejected {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #991b1b;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 3px;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.status-cancelled {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #475569;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 3px;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* DatePicker */
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 5px;
+}
+
+/* TextArea */
+.text-area {
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.text-area:focused {
+    -fx-border-color: #3b82f6;
+}
+
+/* Separator */
+.separator {
+    -fx-background-color: #e2e8f0;
+}
+
+/* ========================================
+   Modern Dashboard Styles (Reference Design)
+   ======================================== */
+
+/* Modern Stats Cards */
+.stats-card-modern {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 15, 0, 0, 2);
+}
+
+/* Chart Cards */
+.chart-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 15, 0, 0, 2);
+}
+
+/* Chart Styling */
+.chart {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.chart-plot-background {
+    -fx-background-color: white;
+}
+
+.chart-content {
+    -fx-padding: 10px;
+}
+
+/* Line Chart - Blue Theme */
+.chart-series-line {
+    -fx-stroke: #4F8FF0;
+    -fx-stroke-width: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(79, 143, 240, 0.3), 5, 0, 0, 2);
+}
+
+.chart-line-symbol {
+    -fx-background-color: #4F8FF0;
+    -fx-background-radius: 50%;
+    -fx-padding: 5px;
+}
+
+/* Bar Chart - Blue Theme */
+.default-color0.chart-bar {
+    -fx-bar-fill: #4F8FF0;
+    -fx-background-radius: 6px 6px 0 0;
+}
+
+.default-color0.chart-bar:hover {
+    -fx-bar-fill: #3B7DD6;
+}
+
+/* Chart Axes */
+.axis {
+    -fx-tick-label-fill: #64748b;
+    -fx-font-size: 11px;
+}
+
+.axis-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 12px;
+}
+
+/* Chart Grid Lines */
+.chart-vertical-grid-lines {
+    -fx-stroke: #f1f5f9;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #f1f5f9;
+}
+
+.chart-vertical-zero-line,
+.chart-horizontal-zero-line {
+    -fx-stroke: #e2e8f0;
+}
+
+/* ========================================
+   Filter Buttons
+   ======================================== */
+
+.filter-button {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #475569;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.filter-button:hover {
+    -fx-background-color: #cbd5e1;
+    -fx-text-fill: #1e293b;
+}
+
+.filter-button-active {
+    -fx-background-color: #4F8FF0;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+}
+
+.filter-button-active:hover {
+    -fx-background-color: #3B7DD6;
+}
