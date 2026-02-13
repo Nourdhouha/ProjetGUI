@@ -86,7 +86,7 @@ Avant de commencer, assurez-vous d'avoir installé :
 ### Étape 1 : Cloner ou télécharger le projet
 
 ```bash
-cd c:\Users\ykhazri\collinetripartyConfig\agence
+cd agence
 ```
 
 ### Étape 2 : Créer la base de données
