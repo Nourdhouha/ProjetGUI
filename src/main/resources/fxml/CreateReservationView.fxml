@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.voyageaffaires.controllers.CreateReservationController"
+            prefHeight="700.0" prefWidth="900.0">
+    
+    <stylesheets>
+        <java.lang.String fx:value="/css/style.css"/>
+    </stylesheets>
+    
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: white; -fx-background-color: white;">
+            <VBox spacing="25.0" style="-fx-background-color: white;">
+                <padding>
+                    <Insets top="30.0" right="40.0" bottom="30.0" left="40.0"/>
+                </padding>
+                
+                <!-- Title -->
+                <Label text="Nouvelle Réservation" 
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                
+                <Separator/>
+                
+                <!-- Step 1: Vol -->
+                <VBox spacing="15.0">
+                    <Label text="1. Sélectionner un Vol" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                    
+                    <HBox spacing="15.0" alignment="CENTER_LEFT">
+                        <Label text="Rechercher:" styleClass="field-label"/>
+                        <TextField fx:id="volSearchField" promptText="Origine ou destination..." 
+                                  HBox.hgrow="ALWAYS"/>
+                        <Button text="Rechercher" onAction="#handleSearchVol" styleClass="primary-button"/>
+                    </HBox>
+                    
+                    <TableView fx:id="volTable" prefHeight="200.0">
+                        <columns>
+                            <TableColumn fx:id="colVolId" text="ID" prefWidth="80.0"/>
+                            <TableColumn fx:id="colVolCompagnie" text="Compagnie" prefWidth="120.0"/>
+                            <TableColumn fx:id="colVolOrigine" text="Origine" prefWidth="150.0"/>
+                            <TableColumn fx:id="colVolDestination" text="Destination" prefWidth="150.0"/>
+                            <TableColumn fx:id="colVolDepart" text="Départ" prefWidth="150.0"/>
+                            <TableColumn fx:id="colVolPrix" text="Prix" prefWidth="100.0"/>
+                            <TableColumn fx:id="colVolActions" text="Action" prefWidth="100.0"/>
+                        </columns>
+                    </TableView>
+                    
+                    <HBox spacing="10.0" alignment="CENTER_LEFT">
+                        <Label text="Vol sélectionné:" styleClass="field-label"/>
+                        <Label fx:id="selectedVolLabel" text="Aucun" 
+                               style="-fx-text-fill: #4F8FF0; -fx-font-weight: bold;"/>
+                    </HBox>
+                </VBox>
+                
+                <Separator/>
+                
+                <!-- Step 2: Hôtel (Optional) -->
+                <VBox spacing="15.0">
+                    <Label text="2. Sélectionner un Hôtel (Optionnel)" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                    
+                    <HBox spacing="15.0" alignment="CENTER_LEFT">
+                        <Label text="Rechercher:" styleClass="field-label"/>
+                        <TextField fx:id="hotelSearchField" promptText="Ville..." 
+                                  HBox.hgrow="ALWAYS"/>
+                        <Button text="Rechercher" onAction="#handleSearchHotel" styleClass="primary-button"/>
+                    </HBox>
+                    
+                    <TableView fx:id="hotelTable" prefHeight="200.0">
+                        <columns>
+                            <TableColumn fx:id="colHotelId" text="ID" prefWidth="80.0"/>
+                            <TableColumn fx:id="colHotelNom" text="Nom" prefWidth="200.0"/>
+                            <TableColumn fx:id="colHotelVille" text="Ville" prefWidth="150.0"/>
+                            <TableColumn fx:id="colHotelEtoiles" text="Étoiles" prefWidth="80.0"/>
+                            <TableColumn fx:id="colHotelPrix" text="Prix/Nuit" prefWidth="100.0"/>
+                            <TableColumn fx:id="colHotelActions" text="Action" prefWidth="100.0"/>
+                        </columns>
+                    </TableView>
+                    
+                    <HBox spacing="10.0" alignment="CENTER_LEFT">
+                        <Label text="Hôtel sélectionné:" styleClass="field-label"/>
+                        <Label fx:id="selectedHotelLabel" text="Aucun" 
+                               style="-fx-text-fill: #4F8FF0; -fx-font-weight: bold;"/>
+                    </HBox>
+                    
+                    <GridPane hgap="15.0" vgap="10.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="120.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0"/>
+                        </columnConstraints>
+                        
+                        <Label text="Date Check-in:" styleClass="field-label" 
+                               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <DatePicker fx:id="checkinDate" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        
+                        <Label text="Date Check-out:" styleClass="field-label" 
+                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <DatePicker fx:id="checkoutDate" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        
+                        <Label text="Nombre de chambres:" styleClass="field-label" 
+                               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <Spinner fx:id="chambresSpinner" initialValue="1" min="1" max="10" 
+                                GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    </GridPane>
+                </VBox>
+                
+                <Separator/>
+                
+                <!-- Step 3: Détails -->
+                <VBox spacing="15.0">
+                    <Label text="3. Informations Complémentaires" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                    
+                    <GridPane hgap="15.0" vgap="15.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0"/>
+                            <ColumnConstraints hgrow="ALWAYS" minWidth="300.0"/>
+                        </columnConstraints>
+                        
+                        <Label text="Motif du voyage:" styleClass="field-label" 
+                               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <TextField fx:id="motifField" promptText="Ex: Réunion client, Formation..." 
+                                  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        
+                        <Label text="Commentaire:" styleClass="field-label" 
+                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextArea fx:id="commentaireArea" promptText="Remarques ou instructions particulières..." 
+                                 prefRowCount="3" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    </GridPane>
+                </VBox>
+                
+                <Separator/>
+                
+                <!-- Summary -->
+                <VBox spacing="10.0" styleClass="stats-card-modern" style="-fx-padding: 20;">
+                    <Label text="Récapitulatif" 
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+                    
+                    <Label fx:id="summaryLabel" wrapText="true"
+                           style="-fx-text-fill: #475569;"/>
+                    
+                    <Label fx:id="totalLabel" text="Total: 0.00 €" 
+                           style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #4F8FF0;"/>
+                </VBox>
+                
+                <!-- Error Label -->
+                <Label fx:id="errorLabel" textFill="red" wrapText="true" visible="false"
+                       style="-fx-font-size: 13px;"/>
+                
+                <!-- Action Buttons -->
+                <HBox spacing="15.0" alignment="CENTER_RIGHT">
+                    <Button text="Annuler" onAction="#handleCancel" styleClass="secondary-button">
+                        <padding>
+                            <Insets top="12.0" right="24.0" bottom="12.0" left="24.0"/>
+                        </padding>
+                    </Button>
+                    
+                    <Button text="Créer la Réservation" onAction="#handleCreateReservation" 
+                            styleClass="primary-button">
+                        <padding>
+                            <Insets top="12.0" right="24.0" bottom="12.0" left="24.0"/>
+                        </padding>
+                    </Button>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

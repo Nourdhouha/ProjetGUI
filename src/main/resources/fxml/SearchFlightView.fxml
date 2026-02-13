@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.voyageaffaires.controllers.SearchFlightController"
+            prefHeight="800.0" prefWidth="1280.0">
+    
+    <stylesheets>
+        <java.lang.String fx:value="/css/style.css"/>
+    </stylesheets>
+    
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20.0">
+            <padding>
+                <Insets top="15.0" right="30.0" bottom="15.0" left="30.0"/>
+            </padding>
+            
+            <Button text="← Retour" onAction="#goBack" styleClass="secondary-button">
+                <padding>
+                    <Insets top="8.0" right="15.0" bottom="8.0" left="15.0"/>
+                </padding>
+            </Button>
+            
+            <Label text="Rechercher un Vol" styleClass="header-title"/>
+        </HBox>
+    </top>
+    
+    <center>
+        <VBox styleClass="content-area" spacing="20.0">
+            <padding>
+                <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+            </padding>
+            
+            <!-- Search Form -->
+            <HBox spacing="15.0">
+                <TextField fx:id="origineField" promptText="Origine" prefWidth="200.0"/>
+                <TextField fx:id="destinationField" promptText="Destination" prefWidth="200.0"/>
+                <TextField fx:id="maxPrixField" promptText="Prix max (€)" prefWidth="150.0"/>
+                <Button text="Rechercher" onAction="#handleSearch" styleClass="primary-button">
+                    <padding>
+                        <Insets top="10.0" right="20.0" bottom="10.0" left="20.0"/>
+                    </padding>
+                </Button>
+            </HBox>
+            
+            <!-- Results Table -->
+            <TableView fx:id="flightsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colCompagnie" text="Compagnie" prefWidth="150.0"/>
+                    <TableColumn fx:id="colOrigine" text="Origine" prefWidth="200.0"/>
+                    <TableColumn fx:id="colDestination" text="Destination" prefWidth="200.0"/>
+                    <TableColumn fx:id="colDepart" text="Départ" prefWidth="150.0"/>
+                    <TableColumn fx:id="colArrivee" text="Arrivée" prefWidth="150.0"/>
+                    <TableColumn fx:id="colPrix" text="Prix (€)" prefWidth="100.0"/>
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="120.0"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
