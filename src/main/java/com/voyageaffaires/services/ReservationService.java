@@ -3,9 +3,12 @@ package com.voyageaffaires.services;
 import com.voyageaffaires.dao.ReservationDAO;
 import com.voyageaffaires.dao.VolDAO;
 import com.voyageaffaires.dao.HotelDAO;
+import com.voyageaffaires.dao.UtilisateurDAO;
 import com.voyageaffaires.models.Reservation;
 import com.voyageaffaires.models.Vol;
 import com.voyageaffaires.models.Hotel;
+import com.voyageaffaires.models.Utilisateur;
+import com.voyageaffaires.utils.EmailService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -19,11 +22,15 @@ public class ReservationService {
     private ReservationDAO reservationDAO;
     private VolDAO volDAO;
     private HotelDAO hotelDAO;
+    private UtilisateurDAO utilisateurDAO;
+    private EmailService emailService;
     
     public ReservationService() {
         this.reservationDAO = new ReservationDAO();
         this.volDAO = new VolDAO();
         this.hotelDAO = new HotelDAO();
+        this.utilisateurDAO = new UtilisateurDAO();
+        this.emailService = new EmailService();
     }
     
     /**
@@ -72,7 +79,14 @@ public class ReservationService {
         reservation.setMontantTotal(totalAmount);
         
         // Save reservation
-        return reservationDAO.save(reservation);
+        boolean saved = reservationDAO.save(reservation);
+        
+        if (saved) {
+            // Send confirmation email
+            sendReservationConfirmationEmail(reservation);
+        }
+        
+        return saved;
     }
     
     /**
@@ -100,7 +114,15 @@ public class ReservationService {
      * @return true if successful, false otherwise
      */
     public boolean cancelReservation(String idReservation) {
-        return reservationDAO.updateStatus(idReservation, "ANNULEE");
+        Reservation reservation = reservationDAO.findById(idReservation);
+        boolean cancelled = reservationDAO.updateStatus(idReservation, "ANNULEE");
+        
+        if (cancelled && reservation != null) {
+            // Send cancellation notification email
+            sendCancellationNotificationEmail(reservation);
+        }
+        
+        return cancelled;
     }
     
     /**
@@ -209,5 +231,73 @@ public class ReservationService {
         }
         
         return true;
+    }
+    
+    /**
+     * Sends a reservation confirmation email to the user.
+     * 
+     * @param reservation Reservation details
+     */
+    private void sendReservationConfirmationEmail(Reservation reservation) {
+        try {
+            // Get user details
+            Utilisateur user = utilisateurDAO.findById(reservation.getIdUtilisateur());
+            if (user == null) {
+                System.err.println("Cannot send email: User not found");
+                return;
+            }
+            
+            // Get flight details if present
+            Vol vol = null;
+            if (reservation.getIdVol() != null) {
+                vol = volDAO.findById(reservation.getIdVol());
+            }
+            
+            // Get hotel details if present
+            Hotel hotel = null;
+            if (reservation.getIdHotel() != null) {
+                hotel = hotelDAO.findById(reservation.getIdHotel());
+            }
+            
+            // Send email
+            boolean emailSent = emailService.sendReservationConfirmation(user, reservation, vol, hotel);
+            
+            if (emailSent) {
+                System.out.println("Reservation confirmation email sent successfully to: " + user.getEmail());
+            } else {
+                System.out.println("Failed to send reservation confirmation email");
+            }
+        } catch (Exception e) {
+            System.err.println("Error sending reservation confirmation email: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Sends a cancellation notification email to the user.
+     * 
+     * @param reservation Cancelled reservation details
+     */
+    private void sendCancellationNotificationEmail(Reservation reservation) {
+        try {
+            // Get user details
+            Utilisateur user = utilisateurDAO.findById(reservation.getIdUtilisateur());
+            if (user == null) {
+                System.err.println("Cannot send email: User not found");
+                return;
+            }
+            
+            // Send email
+            boolean emailSent = emailService.sendCancellationNotification(user, reservation);
+            
+            if (emailSent) {
+                System.out.println("Cancellation notification email sent successfully to: " + user.getEmail());
+            } else {
+                System.out.println("Failed to send cancellation notification email");
+            }
+        } catch (Exception e) {
+            System.err.println("Error sending cancellation notification email: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

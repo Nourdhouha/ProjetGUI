@@ -74,6 +74,10 @@ $RECYCLE.BIN/
 # Uncomment if you don't want to commit database credentials
 # src/main/resources/database.properties
 
+# Email Configuration (sensitive - contains credentials)
+# IMPORTANT: Do not commit this file with real credentials
+src/main/resources/email.properties
+
 # Logs
 logs/
 *.log
